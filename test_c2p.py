@@ -8,8 +8,6 @@ from pyspark import SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
-import pyarrow.parquet as pq
-import pyarrow as pa
 import shutil
 import os
 import datetime
@@ -109,7 +107,6 @@ class TestHandler(unittest.TestCase):
         self.assertEqual(responseBody, 'File processed successfully')
         sc.stop()
 
-
     def test03_run_sql_for_hottest_day(self):
         print(f"\n{inspect.currentframe().f_code.co_name}. STARTED")
         # convert csv input to parquet
@@ -137,8 +134,6 @@ class TestHandler(unittest.TestCase):
         print(f"Hottest Day : {row[0]} / {datetime.datetime.strptime(self.hottestDate, '%Y-%m-%d').date()}")
         self.assertEqual(datetime.datetime.strptime(self.hottestDate, '%Y-%m-%d').date(), row[0])
 
-
-
     def test04_run_sql_for_temperature_on_hottest_day(self):
         print(f"\n{inspect.currentframe().f_code.co_name}. STARTED")
         # convert csv input to parquet
@@ -165,7 +160,6 @@ class TestHandler(unittest.TestCase):
         print(f"Temperature on Hottest Day : {round(Decimal(row[1]), 2)}")
         self.assertEqual(round(Decimal(self.maxTemp),2), round(Decimal(row[1]), 2))
 
-
     def test05_run_sql_for_region_of_hottest_day(self):
         print(f"\n{inspect.currentframe().f_code.co_name}. STARTED")
         # convert csv input to parquet
@@ -191,9 +185,6 @@ class TestHandler(unittest.TestCase):
         row = dflist[0]
         print(f"Region of Hottest Day : {row[1]}")
         self.assertEqual(self.hottestRegion, row[1])
-
-
-
 
     def create_a_csv_file(self, testCsvFile, textList):
         try:

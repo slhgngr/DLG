@@ -1,21 +1,13 @@
 import shutil
 from os import path
 import os
-import sys
-import pathlib
 import json
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql import SparkSession
 from pyspark.sql.types import *
-import pyarrow.parquet as pq
-import pyarrow as pa
-import re
-import click
 from os import walk
 
-# @click.command()
-# @click.option('--folder', prompt='Input folder', help='Path to folder containing csv files')
 
 class Par:
 
@@ -86,13 +78,3 @@ class Par:
                 'body': json.dumps("File processed successfully"),
                 'headers': {'Content-Type': 'application/json'}}
 
-
-#
-# if __name__ == "__main__":
-#
-#     if sys.argv[1] == "":
-#         print("Usage : " + sys.argv[0] + " <input_filename>")
-#          {'statusCode': -1, 'body': json.dumps("File does not exist"), 'headers': {'Content-Type': 'application/json'}}
-#
-#     processFile(sys.argv[1])
-#
